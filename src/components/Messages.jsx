@@ -16,7 +16,10 @@ export const Messages = () => {
     if (activeChat?.messages.length) {
       console.log(activeChat.messages[activeChat.messages.length - 1]);
       if (activeChat.messages[activeChat.messages.length - 1].role === "user") {
-        getBotResponse();
+        const tempContext = activeChat.messages.map((el) => {
+          return { content: el.message, role: el.role === "user" ? "user" : "system" };
+        })
+        getBotResponse(tempContext);
       }
     }
   }, [activeChat]);

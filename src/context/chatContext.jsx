@@ -82,9 +82,9 @@ const ContextProvider = ({ children }) => {
   };
 
   // get bot response
-  const getBotResponse = async () => {
+  const getBotResponse = async (chatHistory) => {
     setBotIsTyping(true);
-    getResponse()
+    getResponse(chatHistory)
       .then((response) => {
         addMessage(response, "bot");
       })
@@ -117,7 +117,7 @@ const ContextProvider = ({ children }) => {
     }
   }, [activeChatId, msgList]);
 
-  console.log({ activeChat });
+
   // passing the values to the context
   const contextValue = {
     msgList,
